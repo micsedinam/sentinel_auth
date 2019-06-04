@@ -16,6 +16,10 @@ class RegistrationController extends Controller
    {
    		$user = Sentinel::registerAndActivate($request->all());
 
+   		$role = Sentinel::findRoleBySlug('manager');
+
+   		$role->users()->attach($user);
+
    		return redirect('/');
    }
 }
